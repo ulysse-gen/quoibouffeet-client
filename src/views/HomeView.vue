@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HeaderComponent :user="user" />
+    home
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import HeaderComponent from '../components/HeaderComponent.vue';
 
 export default defineComponent({
   name: 'HomeView',
-  components: {
-    HelloWorld,
+  beforeMount() {
+      if (!this.user)this.$router.push('/login?goto='+this.$route.path);
   },
+  computed: {
+    user: function () {
+      return this.$store.state.user
+    }
+  },
+  components: {
+    HeaderComponent
+  }
 });
 </script>
