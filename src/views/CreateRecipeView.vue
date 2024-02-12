@@ -27,8 +27,18 @@ import MultiIngredientInput from '../components/MultiIngredientInputComponent.vu
 export default defineComponent({
   name: 'CreateRecipeView',
   methods: {
-    publish() {
-      console.log(this.recipe)
+    async publish() {
+      const recipe = await fetch("http://localhost:669/v1/recipes/create", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${this.$store.state.auth_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.recipe)
+      });
+      console.log(JSON.stringify(this.recipe))
+      console.log(recipe.status, recipe.json());
+      if (recipe.status != 200)return null;
     }
   },
   data() {
@@ -36,6 +46,7 @@ export default defineComponent({
       recipe: {
         name: null,
         description: null,
+        preparationTime: 10,
         ingredients: [],
         steps: []
       },

@@ -2,7 +2,7 @@
     <div class="selector">
         <input type="text" class="selector-ingredient" v-model="modelValue.slug" list="ingredients"/>
         <input class="selector-quantity" type="number" v-model="modelValue.quantity">
-        <input type="text" class="selector-unit" v-model="modelValue.unit.slug"/>
+        <input type="text" class="selector-unit" v-model="modelValue.unit.slug" list="units"/>
         <button class="delete-button" @click="$emit('delete')">X</button>
         <datalist id="ingredients">
             <option v-for="ingredient in available_ingredients" :key="ingredient.slug" :value="ingredient.slug">{{ ingredient.name }}</option>
@@ -71,13 +71,21 @@ const model = defineModel({
                 }
             });
             this.$store.commit('set_ingredients', await ingredients.json());
+
+            const units = await fetch("http://localhost:669/v1/units/*", {
+                method: "GET",
+                headers: {
+                "Authorization": `Bearer ${this.$store.state.auth_token}`
+                }
+            });
+            this.$store.commit('set_units', await units.json());
         },
         computed: {
             available_ingredients() {
                 return this.$store.state.ingredients
             },
             available_units() {
-                return [] as any
+                return this.$store.state.units
             }
         }
     });

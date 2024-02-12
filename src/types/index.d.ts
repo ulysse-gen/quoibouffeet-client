@@ -24,6 +24,12 @@ export declare global {
       description: string;
     }
 
+    interface UnitData {
+      name: string;
+      slug: string;
+      short: string;
+    }
+
     interface IngredientData {
       name: string;
       slug: string;

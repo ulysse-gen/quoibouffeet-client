@@ -9,7 +9,7 @@ export default createStore({
     ingredients: [] as Array<QuoiBouffeEt.IngredientData>,
     types: [] as Array<QuoiBouffeEt.TypeData>,
     recipes: [] as Array<QuoiBouffeEt.RecipeData>,
-    units: [] as Array<any>,
+    units: [] as Array<QuoiBouffeEt.UnitData>,
   },
   getters: {
   },
