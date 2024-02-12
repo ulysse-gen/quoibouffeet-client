@@ -5,7 +5,11 @@ import { Router } from 'vue-router';
 export default createStore({
   state: {
     auth_token: getCookie('auth_token') || null as string | null,
-    user: null as null | QuoiBouffeEt.UserData
+    user: null as null | QuoiBouffeEt.UserData,
+    ingredients: [] as Array<QuoiBouffeEt.IngredientData>,
+    types: [] as Array<QuoiBouffeEt.TypeData>,
+    recipes: [] as Array<QuoiBouffeEt.RecipeData>,
+    units: [] as Array<any>,
   },
   getters: {
   },
@@ -25,6 +29,18 @@ export default createStore({
       state.user = null;
       removeCookie('auth_token');
       router.push('/login');
+    },
+    set_ingredients(state, ingredients){
+      state.ingredients = ingredients;
+    },
+    set_types(state, types){
+      state.types = types;
+    },
+    set_recipes(state, recipes){
+      state.recipes = recipes;
+    },
+    set_units(state, units){
+      state.units = units;
     }
   },
   actions: {

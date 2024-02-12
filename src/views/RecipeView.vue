@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import HeaderComponent from '../components/HeaderComponent.vue';
-import RecipeComponent from '../components/RecipeComponent.vue';
+import RecipeComponent from '../components/RecipeComponent/RecipeComponent.vue';
 
 export default defineComponent({
   name: 'RecipeView',

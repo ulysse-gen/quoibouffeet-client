@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/recipe/@:recipe',
     name: 'recipepage',
     component: () => import("@/views/RecipeView.vue")
+  },
+  {
+    path: '/recipe/create',
+    name: 'createrecipepage',
+    component: () => import("@/views/CreateRecipeView.vue")
   }
 ]
 

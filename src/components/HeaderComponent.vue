@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <h1 class="title" @click="goHome">QuoiBouffeEt</h1>
+        <button class="new-recipe" @click="newRecipe" v-if="user">Create recipe</button>
         <button class="log-off" @click="logout" v-if="user">Sign Out</button>
     </div>
 </template>
@@ -20,6 +21,9 @@
             },
             goHome() {
                 this.$router.push('/');
+            },
+            newRecipe() {
+                this.$router.push('/recipe/create');
             }
         }
     });
@@ -46,9 +50,25 @@
             }
         }
 
+        .new-recipe {
+            height: 100%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 1rem;
+            margin-left: auto;
+
+            background-color: transparent;
+            color: var(--text-color);
+
+            &:hover {
+                background-color: var(--call-to-action-positive);
+                box-shadow:  0px 0px 50px 2px var(--call-to-action-positive);
+            }
+        }
+
         .log-off {
             height: 100%;
-            margin-left: auto;
             border: none;
             outline: none;
             cursor: pointer;
@@ -58,8 +78,8 @@
             color: var(--text-color);
 
             &:hover {
-                background-color: var(--call-to-action);
-                box-shadow:  0px 0px 50px 2px var(--call-to-action);
+                background-color: var(--call-to-action-negative);
+                box-shadow:  0px 0px 50px 2px var(--call-to-action-negative);
             }
         }
     }
